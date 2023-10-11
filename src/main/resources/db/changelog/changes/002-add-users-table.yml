@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002
+      author: inane
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: userUID
+                  type: TEXT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: userName
+                  type: VARCHAR(255)
+              - column:
+                  name: createdDate
+                  type: DATE

@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003
+      author: inane
+      changes:
+        - createTable:
+            tableName: user2books
+            columns:
+              - column:
+                  name: userUID
+                  type: TEXT
+              - column:
+                  name: bookUID
+                  type: TEXT
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: createdDate
+                  type: DATE
+              - column:
+                  name: lastUpdate
+                  type: DATE
+              - column:
+                  name: rating
+                  type: INT
+              - column:
+                  name: imageUrl
+                  type: VARCHAR(255)
+            primaryKey:
+              - columnNames:
+                  - userUID
+                  - bookUID

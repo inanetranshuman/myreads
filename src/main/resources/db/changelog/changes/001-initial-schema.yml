@@ -1,0 +1,120 @@
+databaseChangeLog:
+  - changeSet:
+      id: '001'
+      author: inane
+      changes:
+        - createTable:
+            tableName: authors
+            columns:
+              - column:
+                  name: authorUID
+                  type: TEXT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: lastName
+                  type: VARCHAR(255)
+              - column:
+                  name: firstName
+                  type: VARCHAR(255)
+              - column:
+                  name: birthDate
+                  type: DATE
+              - column:
+                  name: deathDate
+                  type: DATE
+              - column:
+                  name: website
+                  type: VARCHAR(255)
+            constraints:
+              - primaryKey:
+                  tableName: authors
+                  columnNames: authorUID
+              - nullable:
+                  columnName: deathDate
+                  nullable: true
+
+        - createTable:
+            tableName: publishers
+            columns:
+              - column:
+                  name: publisherUID
+                  type: TEXT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: foundedDate
+                  type: DATE
+              - column:
+                  name: country
+                  type: CHAR(2)
+              - column:
+                  name: contactNumber
+                  type: VARCHAR(50)
+              - column:
+                  name: description
+                  type: TEXT
+
+        - createTable:
+            tableName: books
+            columns:
+              - column:
+                  name: bookUID
+                  type: TEXT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+              - column:
+                  name: subTitle
+                  type: VARCHAR(255)
+              - column:
+                  name: authorUID
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: publisherUID
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: publishedDate
+                  type: DATE
+              - column:
+                  name: category
+                  type: VARCHAR(255)
+              - column:
+                  name: subCategory
+                  type: VARCHAR(255)
+              - column:
+                  name: coverImageUrl
+                  type: VARCHAR(255)
+              - column:
+                  name: language
+                  type: VARCHAR(50)
+              - column:
+                  name: tags
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: TEXT
+            constraints:
+              - foreignKey:
+                  name: FK_AuthorUID
+                  foreignTableName: authors
+                  foreignColumnName: authorUID
+                  referencedTableName: books
+                  referencedColumnNames: authorUID
+              - foreignKey:
+                  name: FK_PublisherUID
+                  foreignTableName: publishers
+                  foreignColumnName: publisherUID
+                  referencedTableName: books
+                  referencedColumnNames: publisherUID
