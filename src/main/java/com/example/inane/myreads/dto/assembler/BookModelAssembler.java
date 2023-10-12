@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.inane.myreads.controller.AuthorController;
 import com.example.inane.myreads.controller.BookController;
+import com.example.inane.myreads.controller.PublisherController;
 import com.example.inane.myreads.dto.BookRepresentation;
 import com.example.inane.myreads.model.Book;
 
@@ -36,7 +37,7 @@ public class BookModelAssembler implements RepresentationModelAssembler<Book, En
 
         // Add related resources
         model.add(linkTo(methodOn(AuthorController.class).getAuthorById(book.getAuthorUID())).withRel("author"));
-        //model.add(linkTo(methodOn(PublisherController.class).getPublisherById(book.getPublisher().getId())).withRel("publisher"));
+        model.add(linkTo(methodOn(PublisherController.class).getPublisherById(book.getPublisherUID())).withRel("publisher"));
 
         return model;
     }

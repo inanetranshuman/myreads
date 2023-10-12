@@ -1,14 +1,10 @@
 package com.example.inane.myreads.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.Link;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.inane.myreads.dto.BookRepresentation;
 import com.example.inane.myreads.dto.assembler.BookModelAssembler;
-import com.example.inane.myreads.exception.BookNotFoundException;
+import com.example.inane.myreads.exception.EntityNotFoundException;
 import com.example.inane.myreads.model.Book;
 import com.example.inane.myreads.service.BookService;
 
@@ -35,7 +31,7 @@ public class BookController {
         Book bookEntity = bookService.findBookById(id);
 
         if (bookEntity == null) {
-            throw new BookNotFoundException(id);
+            throw new EntityNotFoundException(id);
         }
 
         return assembler.toModel(bookEntity);
